@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>球队展示</title>
+</head>
+<body>
+	<center>
+		<table border="1">
+			<th>球员ID</th>
+			<th>球员所属球队</th>
+			<th>球员名字</th>
+			<th>球员照片</th>
+			<th>球员年龄</th>
+			<th>球员身高</th>
+			<th>球员体重</th>
+			<th>球员位置</th>
+			<th>球员状态</th>
+			<th>上场时间</th>
+			<th>更新时间</th>
+			<th>操作</th>
+			{foreach name='data' item='v'}
+             <tr>
+             	<td>{$v['p_id']}</td>
+             	<td>{$v['team_name']}</td>
+             	<td>{$v['player_name']}</td>
+             	<td><img src="__PUBLIC__/uploads/<?php echo $v['photo'] ;?>" width="50" height="50" alt=""></td>
+             	<td>{$v['age']}</td>
+             	<td>{$v['height']}</td>
+             	<td>{$v['weight']}</td>
+             	<td>{if condition="$v['position']==0"}大前锋
+             	{elseif  condition="$v['position']==1"/}小前锋
+             	{elseif  condition="$v['position']==2"/}中锋
+             	{elseif  condition="$v['position']==3"/}控球后卫
+             	{else/}得分后卫
+                {/if}</td>
+             	<td>{if condition="$v['status']==0"}上场
+             	{else/}下场
+                {/if}</td>
+             	<td>{$v['create_ptime']}</td>
+             	<td>{$v['update_ptime']}</td>
+             	<td>
+             		<a href="playerOpe?a=del&id={$v['p_id']}">删除</a>    
+             		<a href="playerOpe?a=up&id={$v['p_id']}">修改</a>
+             	</td>
+             </tr>
+      
+			{/foreach}
+		</table>
+	</center>
+</body>
+</html>

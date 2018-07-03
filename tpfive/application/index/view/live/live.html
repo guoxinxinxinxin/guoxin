@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>直播添加</title>
+</head>
+<body>
+	<center>
+		<form action="" method="post" enctype="multipart/form-data">
+			<table border="2">
+				<tr>
+					<td>A队</td>
+					<td><select name="a_id" id="">
+						 {volist name="team" id="v"}
+                        <option value="{$v['t_id']}">{$v['team_name']}</option>
+                        {/volist}
+					</select></td>
+				</tr>
+				<tr>
+					<td>B队</td>
+					<td><select name="b_id" id="">
+						 {volist name="team" id="v"}
+                        <option value="{$v['t_id']}">{$v['team_name']}</option>
+                        {/volist}
+					</select></td>
+				</tr>
+				<tr>
+					<td>A队比分</td>
+					<td><input type="text" name="a_score" id=""></td>
+				</tr>
+				<tr>
+					<td>B队比分</td>
+					<td><input type="text" name="b_score" id=""></td>
+				</tr>
+				<tr>
+					<td>直播员</td>
+					<td><input type="text" name="narrator" id=""></td>
+				</tr>
+				<tr>
+					<td>现场照片</td>
+					<td><input type="file" name="gimage" id=""></td>
+				</tr>
+				<tr>
+					<td>目前直播状态</td>
+					<td><select name="g_status" id="">
+						<option value="0">未开始</option>
+						<option value="1">正在直播</option>
+						<option value="2">回放</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>直播开始时间</td>
+					<td><input type="text" name="gstart_time" id=""></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="添加直播"></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?php
+  session_start();  
+   // $site_url = "http:....";  
+    include_once( 'config.php' );  
+    include_once( 'saetv2.ex.class.php' );  
+  
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );  
+  
+    if (isset($_REQUEST['code'])) {  
+        $keys = array();  
+        $keys['code'] = $_REQUEST['code'];  
+        $keys['redirect_uri'] = WB_CALLBACK_URL;  
+        try {  
+            $token = $o->getAccessToken( 'code', $keys ) ;  
+        }   
+        catch (OAuthException $e) {  
+        }  
+    }  
+  
+    if ($token) {  
+        $_SESSION['token'] = $token;  
+        setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );  
+        $c = new saetclientv2(WB_AKEY,WB_SKEY,$token['access_token']);  
+        $ms =$c->home_timeline();  
+        $uid_get = $c->get_uid();  
+        $uid = $uid_get['uid'];  
+        $usr_info=$c->show_user_by_id($uid); //微博sdk方法获取用户的信息  
+
+     echo "<pre>";
+     print_r($usr_info);die;
+        register_user_by_weibo($username,$pwd,$email,$id,$token);//实现登陆跳转  
+    }else {  
+        echo '授权失败。';  
+    }  
+?>

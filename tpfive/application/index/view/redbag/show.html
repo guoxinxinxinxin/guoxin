@@ -1,0 +1,14 @@
+<meta charset='utf8'>
+<div style=" width : 300px;  height:600px;border: 1px red solid; background-color: pink">
+	{volist name="data" id="v"}
+      <h3>{if condition="$v['r_type']==0"}普通红包
+           {elseif condition="$v['r_type']==1" /}拼手气红包
+           {else/}口令红包
+           {/if}
+      	<h3><br/>
+      金额：{$v.money}元<br/>
+      数量：{$v.num}个
+      <a href="">抢红包</a>
+	{/volist}
+
+</div>

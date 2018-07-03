@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>球队展示</title>
+</head>
+<body>
+	<center>
+		<table border="1">
+			<th>球队ID</th>
+			<th>球队名称</th>
+			<th>球队徽章</th>
+			<th>球队地区</th>
+			<th>操作</th>
+			{foreach name='data' item='v'}
+             <tr>
+             	<td>{$v['t_id']}</td>
+             	<td>{$v['team_name']}</td>
+             	<td><img src="__PUBLIC__/uploads/<?php echo $v['image'] ;?>" width="50" height="50" alt=""></td>
+             	<td>{if condition="$v['type']==0"}西部
+                   {else/}东部
+                   {/if}
+             	</td>
+             	<td>
+             		<a href="teamOpe?a=del&id={$v['t_id']}">删除</a>    
+             		<a href="teamOpe?a=up&id={$v['t_id']}">修改</a>
+             	</td>
+             </tr>
+      
+			{/foreach}
+		</table>
+	</center>
+</body>
+</html>
